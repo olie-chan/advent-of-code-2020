@@ -1,4 +1,4 @@
-export default [
+module.exports = [
   1130,
   1897,
   1850,
