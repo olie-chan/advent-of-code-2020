@@ -2,14 +2,14 @@ const getPairFor = (aTotal, aListOfNums) => {
   const pairs = {}
 
   for (const x of aListOfNums) {
-    const pair = aTotal - x;
+    const complement = aTotal - x;
 
-    if (pairs[pair]) {
-      return [x, pair];
+    if (pairs[complement]) {
+      return [x, complement];
     }
     pairs[x] = true;
   }
-}
+};
 
 const getTripletFor = (aTotal, aListOfNums) => {
   for (let i = 0; i < aListOfNums.length; i++) {
@@ -22,15 +22,16 @@ const getTripletFor = (aTotal, aListOfNums) => {
       .concat(
         aListOfNums.slice(i+1)
       )
-    )
+    );
 
     if (result) {
       return [x].concat(result);
     }
   }
-}
+};
 
-const getProduct = (nums) => nums.reduce((total, x) => total * x, 1)
+const getProduct = (nums) =>
+  nums.reduce((total, x) => total * x, 1);
 
 
 module.exports = {
