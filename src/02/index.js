@@ -1,38 +1,39 @@
 //passwordInfo = min-max character: password
 const parsePasswordInfo = (passwordInfo) => {
-  const { groups } = passwordInfo.match(/(?<min>\d+)-(?<max>\d+) (?<character>\w+)\: (?<password>\w+)/)
+  const [_, a, b, ...rest] = passwordInfo.match(/(\d+)-(\d+) (\w+)\: (\w+)/);
+  return [Number(a), Number(b), ...rest];
+};
 
-  return {
-    min: Number(groups.min),
-    max: Number(groups.max),
-    character: groups.character,
-    password: groups.password,
-  };
-}
-const getValidPasswords = (listOfPasswords) => {
-  let result = 0;
-  for (const passwordInfo of listOfPasswords) {
-    const {
-      min,
-      max,
-      character,
-      password,
-    } = parsePasswordInfo(passwordInfo);
+const getValidPasswordsPart1 = (listOfPasswords) =>
+  listOfPasswords.reduce((count, passwordInfo) => {
+    const [min, max, character, password] = parsePasswordInfo(passwordInfo);
 
-    const matches = password.match(new RegExp(character, 'g'));
+    const matches = password.match(new RegExp(character, "g"));
 
-    if (matches &&
-        matches.length >= min &&
-        matches.length <= max
-      ) {
-      result++;
-    };
-  }
+    if (matches && matches.length >= min && matches.length <= max) {
+      return ++count;
+    }
 
-  return result;
-}
+    return count;
+  }, 0);
 
+const getValidPasswordsPart2 = (listOfPasswords) =>
+  listOfPasswords.reduce((count, passwordInfo) => {
+    const [firstPos, secondPos, character, password] = parsePasswordInfo(
+      passwordInfo
+    );
+
+    if (
+      password.charAt(firstPos - 1) === character ^
+      password.charAt(secondPos - 1) === character
+    ) {
+      return ++count;
+    }
+
+    return count;
+  }, 0);
 
 module.exports = {
-  getValidPasswords,
+  getValidPasswordsPart1,
+  getValidPasswordsPart2,
 };
