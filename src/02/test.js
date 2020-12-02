@@ -16,5 +16,6 @@ describe("getValidPasswordsPart1", () => {
 describe('getValidPasswordsPart2', () => {
   it("returns the number of valid passwords for the second policy", () => {
     expect(getValidPasswordsPart2(basicCase)).toBe(1);
+    expect(getValidPasswordsPart2(passwords)).toBe(267);
   });
 });
