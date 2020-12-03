@@ -30,10 +30,7 @@ function getTripletFor(aTotal, aListOfNums) {
   }
 }
 
-const getProduct = (nums) => nums.reduce((total, x) => total * x, 1);
-
 module.exports = {
   getPairFor,
   getTripletFor,
-  getProduct,
 };

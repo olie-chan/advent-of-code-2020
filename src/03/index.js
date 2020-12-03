@@ -21,7 +21,16 @@ function getNumberOfHitTreesForSlope(x, y, listOfTerrains) {
   return result;
 }
 
+function getNumberOfHitTreesForEachSlope(slopes, listOfTerrains) {
+  return slopes
+    .map((s) => getNumberOfHitTreesForSlope(
+      ...s,
+      listOfTerrains,
+    ));
+}
+
 module.exports = {
   getCharAtPositionX,
   getNumberOfHitTreesForSlope,
+  getNumberOfHitTreesForEachSlope,
 };
