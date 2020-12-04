@@ -15,6 +15,7 @@ module.exports = {
     'no-plusplus': 0,
     'consistent-return': 0,
     'no-bitwise': 0,
+    'guard-for-in': 0,
   },
   globals: {
     describe: true,

@@ -5,7 +5,6 @@ const {
   getNumberOfHitTreesForSlope,
   getNumberOfHitTreesForEachSlope,
 } = require('.');
-const { getProduct } = require('../utils');
 
 const data = fs
   .readFileSync(path.join(__dirname, 'data.txt'), 'utf-8')
@@ -39,6 +38,5 @@ describe('getNumberOfHitTreesForEachSlope', () => {
     const actual = getNumberOfHitTreesForEachSlope(rangeOfSlopes, data);
     const expected = [82, 242, 71, 67, 24];
     expect(actual).toStrictEqual(expected);
-    console.log(getProduct(actual));
   });
 });
