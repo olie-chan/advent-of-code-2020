@@ -1,22 +1,14 @@
+const { intersection } = require('lodash');
+
 function groupCountPart1(groupsAnswers) {
   return new Set([...groupsAnswers.replace(/\W/g, '')]).size;
 }
 
 function groupCountPart2(groupAnswers) {
-  const [firstAnswer, ...others] = groupAnswers.split('\n');
-
-  if (!others.length) {
-    return firstAnswer.length;
-  }
-
-  let result = 0;
-  for (const char of firstAnswer) {
-    if (others.reduce((includesChar, answers) => includesChar && answers.includes(char), true)) {
-      result++;
-    }
-  }
-
-  return result;
+  return intersection(
+    ...groupAnswers.split('\n')
+      .map((s) => [...s]),
+  ).length;
 }
 
 function getTotalCountOfAnswers(listOfGroupAnswers, cb) {
