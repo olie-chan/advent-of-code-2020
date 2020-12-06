@@ -1,11 +1,11 @@
-const { intersection } = require('lodash');
+const _ = require('lodash');
 
 function groupCountPart1(groupsAnswers) {
   return new Set([...groupsAnswers.replace(/\W/g, '')]).size;
 }
 
 function groupCountPart2(groupAnswers) {
-  return intersection(
+  return _.intersection(
     ...groupAnswers.split('\n')
       .map((s) => [...s]),
   ).length;
