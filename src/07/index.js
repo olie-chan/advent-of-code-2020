@@ -47,16 +47,16 @@ function findParentBags(allBags, search) {
 }
 
 function findChildBags(allBags, search) {
+  // console.log(JSON.stringify(allBags, null, 2));
   const matched = [];
   for (const s of search) {
     for (const key in allBags[s]) {
-      const nextLevel = findChildBags(allBags, Object.keys(allBags[s]));
-      matched.push(allBags[s][key].quantity * nextLevel);
-      console.log({ key, search, matched });
+      const { quantity } = allBags[s][key];
+      const nextLevel = findChildBags(allBags, [key]);
+      matched.push(quantity * (1 + nextLevel));
     }
   }
-  console.log({ matched });
-  return matched.length ? matched.reduce((total, curr) => total + curr, 0) : 1;
+  return matched.length ? matched.reduce((total, curr) => total + curr, 0) : 0;
 }
 
 function part1(rules) {
